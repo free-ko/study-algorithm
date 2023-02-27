@@ -36,3 +36,12 @@ const solution2 = (numbers) => {
 
 const result2 = solution2(numbers);
 console.log(result2);
+
+const solution3 = (numbers) => Math.min(...numbers);
+const solution4 = (numbers) => Math.min.apply(null, numbers);
+
+const result3 = solution3(numbers);
+console.log(result3);
+
+const result4 = solution4(numbers);
+console.log(result4);
