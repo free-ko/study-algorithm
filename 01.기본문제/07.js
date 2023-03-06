@@ -1,50 +1,23 @@
-// 9개의 100을 넘지 않은 자연수가 주어 질 때,
-// 7개의 숫자의 합이 100이 아닌, 다른 2개의 숫자를 제외하고 출력
-
-const solution1 = (numbers) => {
-  // 내 아이디어
-  // - 배열의 총합을 구함
-  // - 숫자의 합 100을 배열의 총합에서 뺌
-  // - 배열에서 2개의 숫자의 합이 총합에서 뺀 숫자랑 같으면 그 숫자를 배열에서 제외
-  let result = numbers;
-  const arraySum = numbers.reduce((acc, cur) => acc + cur);
-  const heightSum = 100;
-  const findSum = arraySum - heightSum;
-
-  for (let i = 0; i < numbers.length - 1; i++) {
-    for (let j = 1; j < numbers.length; j++) {
-      if (numbers[i] + numbers[j] === findSum) {
-        result.splice(j, 1);
-        result.splice(i, 1);
-      }
+// 10부제
+// - 자동차 번호의 일의 자리 숫자가 7이면, 7일, 17일, 27일에 운행하지 못함
+// - 자동차 번호가 일의 자리 숫자가 0이면, 10일, 20일, 30일에 운행하지 못함함
+const solution = (day, numbers) => {
+  let count = 0;
+  for (let number of numbers) {
+    if (number % 10 === day) {
+      count += 1;
     }
   }
 
-  return result;
+  return count;
 };
 
-const solution2 = (numbers) => {
-  // ArraySum - (arr[i] + arr[j]) === 100이면
-  // arr[i], arr[j]를 제외
-  let result = numbers;
-  let sum = numbers.reduce((a, b) => a + b, 0);
+const day1 = 3;
+const day2 = 0;
+const numbers1 = [25, 23, 11, 47, 53, 17, 33];
+const numbers2 = [12, 20, 54, 30, 87, 91, 30];
 
-  for (let i = 0; i < numbers.length - 1; i++) {
-    for (let j = i + 1; j < numbers.length; j++) {
-      if (sum - (numbers[i] + numbers[j]) === 100) {
-        // splice를 하는 순간 값이 사라져서 index가 땡겨지기 때문에 밑에 처럼 작성하던가,
-        // 아니면 뒤에 것 부터 splice해서 처리
-        // result.splice(i, 1);
-        // result.splice(j - 1, 1);
-        result.splice(j, 1);
-        result.splice(i, 1);
-      }
-    }
-  }
-
-  return result;
-};
-
-const numbers = [20, 7, 23, 19, 10, 15, 25, 8, 13];
-const result2 = solution2(numbers);
+const result1 = solution(day1, numbers1);
+const result2 = solution(day2, numbers2);
+console.log(result1);
 console.log(result2);
