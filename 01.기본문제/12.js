@@ -36,6 +36,8 @@ const solution3 = (words) => {
   return result;
 };
 
+const solution4 = (words) => words.toUpperCase();
+
 const words = "ItisTimeToStudy";
-const result3 = solution3(words);
-console.log(result3);
+const result4 = solution4(words);
+console.log(result4);
