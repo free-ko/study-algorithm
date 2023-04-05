@@ -31,11 +31,37 @@ const solution1 = (test) => {
   return result.length;
 };
 
+const solution2 = (test) => {
+  const result = [];
+  const studentCount = test[0].length;
+  const testCount = test.length;
+
+  for (let i = 1; i <= studentCount; i++) {
+    for (let j = 1; j <= studentCount; j++) {
+      let cnt = 0;
+      for (let k = 0; k < testCount; k++) {
+        let pi = 0;
+        let pj = 0;
+        for (let s = 0; s < studentCount; s++) {
+          if (test[k][s] === i) pi = s;
+          if (test[k][s] === j) pj = s;
+        }
+        if (pi < pj) cnt++;
+      }
+
+      if (cnt === testCount) result.push([i, j]);
+    }
+  }
+
+  return result;
+};
+
 const test = [
   [3, 4, 1, 2],
   [4, 3, 2, 1],
   [3, 1, 4, 2],
 ];
 
-const result1 = solution1(test);
-console.log(result1);
+// const result1 = solution1(test);
+const result2 = solution2(test);
+console.log(result2);
