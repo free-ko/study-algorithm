@@ -37,6 +37,42 @@ const solution1 = (totalMoney, products) => {
   return total;
 };
 
+const solution2 = (totalMoney, products) => {
+  let result = 0;
+  const sortedProducts = products.sort((a, b) => a[0] - b[1]);
+
+  for (let i = 0; i < sortedProducts.length; i++) {
+    let cnt = 1;
+    let total = totalMoney;
+
+    const discountedProductPrice = Math.floor(sortedProducts[i][0] / 2);
+    const deliveryPrice = sortedProducts[i][1];
+    const discountedTotalPrice = discountedProductPrice + deliveryPrice;
+
+    total -= discountedTotalPrice;
+    for (let j = 0; j < sortedProducts.length; j++) {
+      if (i === j) continue;
+
+      const productPrice = sortedProducts[j][0];
+      const deliveryPrice = sortedProducts[j][1];
+      const totalProductPrice = productPrice + deliveryPrice;
+
+      if (total - totalProductPrice < 0) {
+        break;
+      }
+
+      if (0 <= total - totalProductPrice) {
+        cnt++;
+        total -= totalProductPrice;
+      }
+    }
+
+    result = Math.max(result, cnt);
+  }
+
+  return result;
+};
+
 const totalMoney = 28;
 const products = [
   [6, 6],
@@ -45,5 +81,6 @@ const products = [
   [4, 5],
   [10, 3],
 ];
-const result1 = solution1(totalMoney, products);
-console.log(result1);
+// const result1 = solution1(totalMoney, products);
+const result2 = solution2(totalMoney, products);
+console.log(result2);
