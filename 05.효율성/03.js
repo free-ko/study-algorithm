@@ -32,7 +32,6 @@ const solution1 = (sum, arr) => {
 };
 
 // 잘 이해 하자!!!
-
 const solution2 = (targetSum, numbers) => {
   let lt = 0;
   let calSum = 0;
