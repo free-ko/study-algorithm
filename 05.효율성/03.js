@@ -69,6 +69,7 @@ const solution3 = (sum, numberList) => {
       ++count;
     }
 
+    // sum < calSum 차이 확인
     while (sum <= calSum) {
       calSum -= numberList[lt];
       ++lt;
