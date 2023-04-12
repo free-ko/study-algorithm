@@ -44,7 +44,7 @@ const solution2 = (targetSum, numbers) => {
       ++count;
     }
 
-    while (calSum >= targetSum) {
+    while (targetSum <= calSum) {
       calSum -= numbers[lt];
       ++lt;
 
@@ -57,6 +57,31 @@ const solution2 = (targetSum, numbers) => {
   return count;
 };
 
+const solution3 = (sum, numberList) => {
+  let lt = 0;
+  let count = 0;
+  let calSum = 0;
+
+  for (let rt = 0; rt < numberList.length; rt++) {
+    calSum += numberList[rt];
+
+    if (calSum === sum) {
+      ++count;
+    }
+
+    while (sum <= calSum) {
+      calSum -= numberList[lt];
+      ++lt;
+
+      if (calSum === sum) {
+        ++count;
+      }
+    }
+  }
+
+  return count;
+};
+
 const numbers = [1, 2, 1, 3, 1, 1, 1, 2];
-const result2 = solution2(6, numbers);
-console.log(result2);
+const result3 = solution3(6, numbers);
+console.log(result3);
