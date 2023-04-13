@@ -56,7 +56,27 @@ const solution2 = (sum, numbers) => {
   return count;
 };
 
+const solution3 = (sum, numbers) => {
+  let count = 0;
+
+  for (let lt = 0; lt < numbers.length; lt++) {
+    let calSum = 0;
+    let rt = lt;
+
+    while (calSum <= sum) {
+      calSum += numbers[rt];
+      ++rt;
+
+      if (calSum <= sum) {
+        ++count;
+      }
+    }
+  }
+
+  return count;
+};
+
 const sum = 5;
 const numbers = [1, 3, 1, 2, 3];
-const result2 = solution2(sum, numbers);
-console.log(result2);
+const result3 = solution3(sum, numbers);
+console.log(result3);
