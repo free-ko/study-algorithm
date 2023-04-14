@@ -37,7 +37,20 @@ const solution2 = (day, salesAmountList) => {
   return max;
 };
 
+const solution3 = (day, arr) => {
+  let sum = 0;
+  for (let i = 0; i < day; i++) {
+    sum += arr[i];
+  }
+
+  for (let i = day; i < arr.length; i++) {
+    sum = Math.max(sum, sum + (arr[i] - arr[i - day]));
+  }
+
+  return sum;
+};
+
 const day = 3;
 const salesAmountList = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
-const result2 = solution2(day, salesAmountList);
-console.log(result2);
+const result3 = solution3(day, salesAmountList);
+console.log(result3);
