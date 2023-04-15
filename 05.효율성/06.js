@@ -56,6 +56,27 @@ const solution2 = (words) => {
   return result;
 };
 
+const solution3 = (votes) => {
+  let max = Number.MIN_SAFE_INTEGER;
+  const map = new Map();
+
+  for (let vote of votes) {
+    if (map.has(vote)) {
+      map.set(vote, map.get(vote) + 1);
+    } else {
+      map.set(vote, 1);
+    }
+  }
+
+  for (let [_, value] of map) {
+    if (max < value) {
+      max = value;
+    }
+  }
+
+  return max;
+};
+
 const votes = "BACBACCACCBDEDE";
-const result2 = solution2(votes);
-console.log(result2);
+const result3 = solution3(votes);
+console.log(result3);
