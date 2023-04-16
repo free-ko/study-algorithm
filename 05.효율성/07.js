@@ -90,9 +90,34 @@ const solution3 = (words1, words2) => {
   return result;
 };
 
+const solution4 = (words1, words2) => {
+  let result = "YES";
+  const wordsMap = new Map();
+
+  for (let word1 of words1) {
+    if (wordsMap.has(word1)) {
+      wordsMap.set(word1, wordsMap.get(word1) + 1);
+    } else {
+      wordsMap.set(word1, 1);
+    }
+  }
+
+  for (let word2 of words2) {
+    if (wordsMap.has(word2)) {
+      wordsMap.set(word2, wordsMap.get(word2) - 1);
+    }
+
+    if (!wordsMap.has(word2) || wordsMap.get(word2) < 0) {
+      return "NO";
+    }
+  }
+
+  return result;
+};
+
 const words1 = "AbaAeCe";
 const words2 = "baeeACA";
 const words3 = "abaCC";
 const words4 = "Caaab";
-const result3 = solution3(words1, words2);
-console.log(result3);
+const result4 = solution4(words3, words4);
+console.log(result4);
