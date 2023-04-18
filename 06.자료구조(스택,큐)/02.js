@@ -23,7 +23,6 @@ const solution2 = (words) => {
 
   for (let word of words) {
     if (word === ")") {
-      stack.pop();
       let popWord = stack.pop();
 
       while (popWord !== "(") {
