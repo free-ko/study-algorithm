@@ -37,6 +37,26 @@ const solution2 = (words) => {
   return result;
 };
 
+const solution3 = (words) => {
+  let result;
+  const stack = [];
+
+  for (let word of words) {
+    if (word === ")") {
+      let popWord = stack.pop();
+
+      while (popWord !== "(") {
+        popWord = stack.pop();
+      }
+    } else {
+      stack.push(word);
+    }
+  }
+
+  result = stack.join("");
+  return result;
+};
+
 const words = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
-const result2 = solution2(words);
-console.log(result2);
+const result3 = solution3(words);
+console.log(result3);
