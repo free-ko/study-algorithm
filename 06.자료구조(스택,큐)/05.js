@@ -21,6 +21,27 @@ const solution1 = (stick) => {
   return result;
 };
 
+const solution2 = (stick) => {
+  let count = 0;
+  const stack = [];
+
+  for (let i = 0; i < stick.length; i++) {
+    if (stick[i] === "(") {
+      stack.push(stick[i]);
+    } else if (stick[i] === ")") {
+      stack.pop();
+
+      if (stick[i - 1] === "(") {
+        count += stack.length;
+      } else if (stick[i] === ")") {
+        count += 1;
+      }
+    }
+  }
+
+  return count;
+};
+
 const stick = "()(((()())(())()))(())";
-const result1 = solution1(stick);
+const result1 = solution2(stick);
 console.log(result1);
