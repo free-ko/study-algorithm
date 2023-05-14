@@ -74,6 +74,31 @@ const solution2 = (size, arr) => {
   return cache;
 };
 
+const solution3 = (size, arr) => {
+  const cache = Array.from({ length: size }, () => 0);
+
+  arr.forEach((item) => {
+    let pos = -1;
+    for (let i = 0; i < cache.length; i++) {
+      if (item === cache[i]) {
+        pos = i;
+      }
+    }
+
+    if (pos === -1) {
+      cache.unshift(item);
+      if (size < cache.length) {
+        cache.pop();
+      }
+    } else {
+      cache.splice(pos, 1);
+      cache.unshift(item);
+    }
+  });
+
+  return cache;
+};
+
 const arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
-const result1 = solution2(5, arr);
+const result1 = solution3(5, arr);
 console.log(result1);
