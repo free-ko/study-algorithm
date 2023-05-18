@@ -27,6 +27,28 @@ const solution1 = (meeting) => {
   return result;
 };
 
+const solution2 = (meeting) => {
+  let result = 0;
+  let endTime = 0;
+
+  const sortedMeeting = [...meeting].sort((a, b) => {
+    if (a[1] === b[1]) {
+      return a[0] - b[0];
+    }
+
+    return a[1] - b[1];
+  });
+
+  for (const meet of sortedMeeting) {
+    if (endTime <= meet[0]) {
+      ++result;
+      endTime = meet[1];
+    }
+  }
+
+  return result;
+};
+
 const test1 = [
   [1, 4],
   [2, 3],
@@ -41,5 +63,5 @@ const test2 = [
   [2, 3],
 ];
 
-const result1 = solution1(test1);
+const result1 = solution2(test2);
 console.log(result1);
