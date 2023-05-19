@@ -82,6 +82,37 @@ const solution2 = (test) => {
   return result;
 };
 
+const solution3 = (times) => {
+  let result = 0;
+  let count = 0;
+  const newArr = [];
+
+  for (const time of times) {
+    newArr.push([time[0], 's']);
+    newArr.push([time[1], 'e']);
+  }
+
+  newArr.sort((a, b) => {
+    if (a[0] === b[0]) {
+      return a[1].charCodeAt() - b[1].charCodeAt();
+    }
+
+    return a[0] - b[0];
+  });
+
+  for (const item of newArr) {
+    if (item[1] === 's') {
+      ++count;
+    } else {
+      --count;
+    }
+
+    result = Math.max(result, count);
+  }
+
+  return result;
+};
+
 const test = [
   [14, 18],
   [12, 15],
