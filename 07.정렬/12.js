@@ -40,8 +40,42 @@ const solution1 = (c, stable) => {
   return result;
 };
 
+const distCount = (stable, dist) => {
+  let cnt = 1;
+  let endpoint = stable[0];
+
+  for (let i = 1; i < stable.length; i++) {
+    if (dist <= stable[i] - endpoint) {
+      ++cnt;
+      endpoint = stable[i];
+    }
+  }
+
+  return cnt;
+};
+
+const solution2 = (horesCount, stable) => {
+  let result;
+  const newArr = [...stable].sort((a, b) => a - b);
+  let lt = 1;
+  let rt = newArr[newArr.length - 1];
+
+  while (lt <= rt) {
+    let mid = parseInt((lt + rt) / 2);
+
+    if (horesCount <= distCount(newArr, mid)) {
+      result = mid;
+      lt = mid + 1;
+    } else {
+      rt = mid - 1;
+    }
+  }
+
+  return result;
+};
+
 const arr1 = [1, 2, 8, 4, 9];
 const arr2 = [5, 6, 8, 12, 14];
 
-const result = solution1(3, arr2);
+const result = solution2(3, arr2);
 console.log(result);
