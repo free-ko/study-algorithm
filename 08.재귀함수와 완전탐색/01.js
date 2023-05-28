@@ -10,5 +10,16 @@ const solution = (n) => {
   DFS(n);
 };
 
-const result = solution(3);
+const practice = (n) => {
+  const DFS = (L) => {
+    if (L === 0) return;
+
+    DFS(L - 1);
+    console.log(L);
+  };
+
+  DFS(n);
+};
+
+const result = practice(3);
 console.log(result);
