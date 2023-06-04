@@ -30,6 +30,31 @@ const solution = (arr) => {
   return result;
 };
 
+const practice = (arr) => {
+  let result = 'NO';
+  let flag = 0;
+  const arraySum = arr.reduce((a, b) => a + b, 0);
+  const arrayLength = arr.length;
+
+  const DFS = (L, sum) => {
+    if (flag) return;
+
+    if (L === arrayLength) {
+      if (arraySum - sum === sum) {
+        result = 'YES';
+        flag = 1;
+      }
+    } else {
+      DFS(L + 1, sum + arr[L]);
+      DFS(L + 1, sum);
+    }
+  };
+
+  DFS(0, 0);
+
+  return result;
+};
+
 const test = [1, 3, 5, 6, 7, 10];
-const result = solution(test);
+const result = practice(test);
 console.log(result);
