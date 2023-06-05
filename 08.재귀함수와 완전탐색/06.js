@@ -25,8 +25,27 @@ const solution = (c, arr) => {
   return result;
 };
 
+const practice = (capacity, arr) => {
+  let result = 0;
+
+  const DFS = (L, sum) => {
+    if (capacity < sum) return;
+
+    if (L === arr.length) {
+      result = Math.max(result, sum);
+    } else {
+      DFS(L + 1, sum + arr[L]);
+      DFS(L + 1, sum);
+    }
+  };
+
+  DFS(0, 0);
+
+  return result;
+};
+
 const weight = 259;
 const arr = [81, 58, 42, 33, 61];
 
-const result = solution(weight, arr);
+const result = practice(weight, arr);
 console.log(result);
