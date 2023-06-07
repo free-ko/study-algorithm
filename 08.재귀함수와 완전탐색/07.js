@@ -27,5 +27,25 @@ const solution = (m, ps, pt) => {
 const ps = [10, 25, 15, 6, 7];
 const pt = [5, 12, 8, 3, 4];
 
+const practice = (minutes, ps, pt) => {
+  let result = Number.MIN_SAFE_INTEGER;
+  const n = ps.length;
+
+  const DFS = (L, sum, time) => {
+    if (minutes < time) return;
+
+    if (L === n) {
+      result = Math.max(result, sum);
+    } else {
+      DFS(L + 1, sum + ps[L], pt[L]);
+      DFS(L + 1, sum, time);
+    }
+  };
+
+  DFS(0, 0, 0);
+
+  return result;
+};
+
 const result = solution(20, ps, pt);
 console.log(result);
