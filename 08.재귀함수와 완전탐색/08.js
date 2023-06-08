@@ -24,5 +24,25 @@ const solution = (n, m) => {
   return result;
 };
 
-const result = solution(3, 2);
+const practice = (targetNumber, location) => {
+  let result = [];
+  let tmp = Array.from({ length: location }, () => 0);
+
+  const DFS = (L) => {
+    if (L === location) {
+      result.push([...tmp]);
+    } else {
+      for (let i = 1; i <= targetNumber; i++) {
+        tmp[L] = i;
+        DFS(L + 1);
+      }
+    }
+  };
+
+  DFS(0);
+
+  return result;
+};
+
+const result = practice(3, 2);
 console.log(result);
