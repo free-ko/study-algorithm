@@ -26,6 +26,28 @@ const solution = (m, arr) => {
   return result;
 };
 
+const practice = (target, arr) => {
+  let result = Number.MAX_SAFE_INTEGER;
+  const length = arr.length;
+
+  const DFS = (L, sum) => {
+    if (target < sum) return;
+
+    if (result <= L) return;
+
+    if (sum === target) {
+      result = Math.min(result, L);
+    } else {
+      for (let i = 0; i < length; i++) {
+        DFS(L + 1, sum + arr[i]);
+      }
+    }
+  };
+
+  DFS(0, 0);
+  return result;
+};
+
 const arr = [1, 2, 5];
-const result = solution(15, arr);
+const result = practice(15, arr);
 console.log(result);
