@@ -30,5 +30,31 @@ const solution = (m, arr) => {
   return result;
 };
 
-const result = solution(2, [3, 6, 9]);
+const practice = (target, arr) => {
+  const result = [];
+
+  const checkArr = Array.from({ length: arr.length }, () => 0);
+  const tmpArr = Array.from({ length: target }, () => 0);
+
+  const DFS = (L) => {
+    if (L === target) {
+      result.push([...tmpArr]);
+    } else {
+      for (let i = 0; i < arr.length; i++) {
+        if (checkArr[i] === 0) {
+          checkArr[i] = 1;
+          tmpArr[L] = arr[i];
+          DFS(L + 1);
+          checkArr[i] = 0;
+        }
+      }
+    }
+  };
+
+  DFS(0);
+
+  return result;
+};
+
+const result = practice(2, [3, 6, 9]);
 console.log(result);
