@@ -17,5 +17,20 @@ const solution = (n) => {
   return result;
 };
 
-const result = solution(5);
+const practice = (n) => {
+  let result;
+
+  const DFS = (L) => {
+    if (L === 1) return 1;
+
+    return L * DFS(L - 1);
+  };
+
+  result = DFS(n);
+
+  return result;
+};
+
+const result = practice(5);
+
 console.log(result);
