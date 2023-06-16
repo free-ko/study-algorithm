@@ -32,5 +32,4 @@ const practice = (n) => {
 };
 
 const result = practice(5);
-
 console.log(result);
